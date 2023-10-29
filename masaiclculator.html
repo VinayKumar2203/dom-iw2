@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculator </title>
+    <style>
+        h1{
+            text-align: center;
+            color: rgb(0, 5, 5);
+        }
+        #contanor{
+            height: 350px;
+            width: 280px;
+            margin-left: 37%;
+           
+           padding: 30px;
+           box-shadow: rgba(7, 7, 230, 0.2) 0px 7px 29px 0px   
+        }
+        .main{
+            width:100%;
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(5,1fr);
+            /* cursor: pointer; */
+        
+        }
+        
+        .item{
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+            box-shadow: rgba(204, 34, 34, 0.16) 0px 1px 4px;
+            border: none;
+            cursor: pointer;
+        }
+        #equall{
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+            box-shadow: rgba(23, 250, 246, 0.16) 0px 1px 4px;
+            border: none;
+            cursor: pointer;
+            /* color: white; */
+             background-color: rgb(32, 7, 7);
+        }
+        #equall button{
+            color: white;
+        }
+        #clear{
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+            box-shadow: rgba(230, 89, 89, 0.16) 0px 1px 4px;
+            border: none;
+            cursor: pointer;
+            color: white; background-color: rgb(32, 7, 7);
+            color: white; background-color: red;
+        }
+        .opretator{
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+            box-shadow: rgba(17, 93, 206, 0.574) 0px 1px 4px;
+            border: none;
+            cursor: pointer;
+             /* color: white; */
+           background-color: rgb(32, 7, 7); 
+        }
+        .opretator button{
+            color: white;
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            border-radius: 5px;
+            background-color: rgba(221, 11, 11, 0.205); 
+            border: none;
+            font-size: larger;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        #sum{
+            width:260px;
+             height:60px;
+              margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Masai Calculator <br> this is a working Calculator  </h1>
+    <br><br>
+    <div id="contanor">
+        
+        <div >
+            <input type="text" id="sum" >
+        </div>
+        <div class="main">
+            <div class="item"> <button>1</button>
+            </div>
+            <div class="item"><button>2</button></div>
+            <div class="item">
+                <button>3</button>
+            </div>
+            <div class="opretator">
+                <button>+</button>
+            </div>
+            <div class="item "> <button>4</button></div>
+            <div class="item"><button>5</button></div>
+            <div class="item"><button>6</button></div>
+            <div class="opretator"><button>-</button></div>
+            <div class="item "><button>7</button></div>
+            <div class="item"><button>8</button></div>
+            <div class="item"><button>9</button></div>
+            <div class=" opretator "><button>*</button></div>
+            <div id="clear"> <button >C</button></div>
+            <div class="item "><button>0</button></div>
+            <div id="equall"><button >=</button></div>
+            <div class="opretator"><button>/</button></div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+        let input = document.getElementById("sum");
+    let btn = document.querySelectorAll(".item>button");
+    let optn = document.querySelectorAll(".opretator>button");
+    let isfirstnumber = true;
+    let firstnumber = "";
+    let Secondnumber = "";
+    let final = "";
+
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', function () {
+            if (isfirstnumber == true) {
+                firstnumber += btn[i].innerText;
+                input.value = firstnumber;
+            } else {
+                Secondnumber += btn[i].innerText;
+                input.value = Secondnumber;
+            }
+        });
+    }
+
+    for (let i = 0; i < optn.length; i++) {
+        optn[i].addEventListener('click', function () {
+            isfirstnumber = false;
+            final = optn[i].innerText;
+        });
+    }
+
+    function totalvalue(firstnumber, Secondnumber, final) {
+        switch (final) {
+            case "+":
+                return Number(firstnumber) + Number(Secondnumber);
+
+            case "-":
+                return Number(firstnumber) - Number(Secondnumber);
+
+            case "*":
+                return Number(firstnumber) * Number(Secondnumber);
+
+            case "/":
+                return Number(firstnumber) / Number(Secondnumber);
+        }
+    }
+
+    let result = document.getElementById("equall");
+    result.addEventListener('click', function () {
+        input.value = totalvalue(firstnumber, Secondnumber, final);
+    });
+
+    let clearButton = document.getElementById("clear");
+    clearButton.addEventListener('click', function () {
+        input.value = "";
+        firstnumber = "";
+        Secondnumber = "";
+        final = "";
+        isfirstnumber = true;
+    });
+
+</script>
+
+
